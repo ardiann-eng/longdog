@@ -401,7 +401,7 @@ async function connectPhantom(){
   if(!provider || !provider.isPhantom){
     connectBtn.textContent = 'Install Phantom';
     connectBtn.onclick = () => window.open('https://phantom.app/', '_blank');
-    flash('Phantom tidak terdeteksi'); return;
+    flash('Phantom not detected'); return;
   }
   try{ const resp=await provider.connect({onlyIfTrusted:false}); const key=resp.publicKey.toString();
     connectBtn.textContent = key.slice(0,4)+'…'+key.slice(-4); connectBtn.classList.add('secondary'); flash('Wallet connected');
