@@ -27,7 +27,7 @@ body{
     radial-gradient(1200px 700px at 10% -10%, #ffe9c5 0%, transparent 60%),
     radial-gradient(800px 500px at 110% 10%, #ffe4b0 0%, transparent 60%),
     var(--bg);
-  color:var(--ink);
+  color:#000000;
   font-family:'Baloo 2', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   line-height:1.6; overflow-x:hidden;
 }
@@ -178,7 +178,7 @@ a:hover{opacity:.9}
 .section{padding:40px 0}
 .section h2{font-family:Chewy; font-size:40px; margin:0 0 18px; text-align:center; letter-spacing:.5px; text-shadow:2px 2px 0 #ffd48a;}
 .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px}
-.card{background:#fff; border-radius:16px; overflow:hidden; border:3px solid #1f2937; box-shadow:var(--shadow)}
+.card{background:#fff; border-radius:16px; overflow:hidden; border:3px solid #ffb14d; box-shadow:var(--shadow)}
 .card img{width:100%; height:100%; display:block; object-fit:cover}
 @media (max-width: 640px){ .grid{grid-template-columns:repeat(2, 1fr)} .hero h1{font-size:36px} }
 @media (max-width: 420px){ .grid{grid-template-columns:1fr} .container{padding:0 10px} .hero h1{font-size:28px} .longdog-card{padding:10px} }
@@ -202,12 +202,12 @@ a:hover{opacity:.9}
 </style>
 </head>
 <body>
-  <!-- Video Background -->
-  <div class="video-bg">
-    <video autoplay muted loop playsinline>
-      <source src="bg.mp4" type="video/mp4">
-    </video>
+  <!-- Background Image -->
+  <div class="bg-image">
+    <img src="bg.jpg" alt="" aria-hidden="true">
+    <div class="overlay"></div>
   </div>
+
   <nav class="nav" aria-label="Main">
     <div class="container nav-inner">
       <div class="brand">
@@ -229,11 +229,11 @@ a:hover{opacity:.9}
             <span class="label">Copy</span>
           </button>
         </div>
-        <a class="pill" id="tgLink" href="https://t.me/longdogcoin" target="_blank" rel="noopener" title="Telegram Community">
+        <a class="pill" id="tgLink" href="https://t.me/LONGDOGMEMES" target="_blank" rel="noopener" title="Telegram Community">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#229ED9"/><path d="M17.5 7.5L6.5 11.5L10 13L13.5 10.5L10 13L10.5 16L12.5 14.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span style="font-family:Chewy;">Telegram</span>
+          <span style="font-family:Chewy;">Meme</span>
         </a>
-        <a class="pill" id="xLink" href="https://twitter.com/longdogcoin" target="_blank" rel="noopener" title="X (Twitter) Community">
+        <a class="pill" id="xLink" href="https://x.com/LongDog_sol" target="_blank" rel="noopener" title="X (Twitter) Community">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#000"/><path d="M7 7L17 17M17 7L7 17" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
           <span style="font-family:Chewy;">X</span>
         </a>
@@ -250,7 +250,7 @@ a:hover{opacity:.9}
         <p class="lead">Scroll or drag to stretch Longdog's neck.</p>
         <div class="cta-row">
           <a class="btn" href="#gallery">View Meme Gallery</a>
-          <a class="btn secondary" href="#" aria-disabled="true" title="More links coming soon">Soon™</a>
+          <a class="btn secondary" href="https://x.com/i/communities/1958522896164270558" aria-disabled="true" title="Join X Commm">X Com</a>
         </div>
       </div>
       <div class="longdog-card">
@@ -267,7 +267,7 @@ a:hover{opacity:.9}
     </div>
 
 <style>
-.video-bg {
+.bg-image {
   position: fixed;
   top: 0;
   left: 0;
@@ -276,7 +276,7 @@ a:hover{opacity:.9}
   z-index: -1;
 }
 
-.video-bg video {
+.bg-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -288,58 +288,26 @@ a:hover{opacity:.9}
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.nav {
+  background: rgb(255 173 2);
 }
 
 .hero {
   position: relative;
   z-index: 1;
+  background: rgba(224, 213, 213, 0.1);
+  backdrop-filter: blur(8px);
 }
 
 .hero h1,
 .hero .lead {
-  color: #fff;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  color: #ffff;
+  text-shadow: 2px 2px 0 #ffffff00;
 }
 </style>
-
-    <style>
-      .hero {
-        position: relative;
-        overflow: hidden;
-      }
-      
-      .video-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-      }
-
-      .video-bg video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6); /* Darker overlay */
-      }
-
-      /* Update text colors for better contrast */
-      .hero h1,
-      .hero .lead {
-        color: #fff;
-        position: relative;
-        z-index: 2;
-      }
     </style>
   </header>
   <section class="section" id="gallery">
