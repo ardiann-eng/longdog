@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Longdog Coin</title>
+<meta name="description" content="Situs resmi komunitas Longdog – meme coin with a very long dog." />
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff7ec;
+  --card:#fff3da;
+  --accent:#ff8a00;
+  --accent-2:#ffb703;
+  --ink:#1f2937;
+  --radius:20px;
+  --shadow:0 15px 40px rgba(0,0,0,.15);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 700px at 10% -10%, #ffe9c5 0%, transparent 60%),
+    radial-gradient(800px 500px at 110% 10%, #ffe4b0 0%, transparent 60%),
+    var(--bg);
+  color:var(--ink);
+  font-family:'Baloo 2', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height:1.6; overflow-x:hidden;
+}
+a{color:var(--accent); text-decoration:none}
+a:hover{opacity:.9}
+.container{max-width:1100px; margin-inline:auto; padding:0 20px}
+/* NAVBAR */
+.nav{
+  position:sticky; top:0; z-index:50; 
+  background:rgba(255, 247, 236, 0.85);
+  backdrop-filter:blur(8px); 
+  border-bottom:2px solid #ffd48a;
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+}
+.nav-inner{display:flex; align-items:center; justify-content:space-between; padding:12px 0; gap:14px}
+.brand{display:flex; align-items:center; gap:10px}
+.brand .logo{width:40px; height:40px; filter:drop-shadow(2px 2px 0 #ffd48a)}
+.brand .title{font-family:Chewy; font-weight:400; letter-spacing:.5px; font-size:26px; text-shadow:2px 2px 0 #ffd48a;}
+/* Hamburger */
+.hamburger{
+  display:none; align-items:center; justify-content:center;
+  width:46px; height:46px; background:#fff; border:3px solid #1f2937;
+  border-radius:14px; box-shadow:4px 4px 0 #1f2937; cursor:pointer;
+  transition:transform .08s ease, box-shadow .2s;
+}
+.hamburger .line{
+  position:relative; width:22px; height:2.5px; background:#1f2937; border-radius:3px;
+  transition:all .25s ease;
+}
+.hamburger .line::before, .hamburger .line::after{
+  content:''; position:absolute; left:0; width:22px; height:2.5px; background:#1f2937; border-radius:3px; transition:all .25s ease;
+}
+.hamburger .line::before{ top:-7px } .hamburger .line::after { top: 7px }
+.hamburger.active .line{ background:transparent }
+.hamburger.active .line::before{ transform:translateY(7px) rotate(45deg) }
+.hamburger.active .line::after { transform:translateY(-7px) rotate(-45deg) }
+.nav-actions{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+.chip{
+  background:var(--card); padding:10px 12px; border-radius:999px;
+  display:flex; align-items:center; gap:10px; box-shadow:var(--shadow);
+  border:3px solid #1f2937; outline:3px dashed #ffd48a; outline-offset:-6px
+}
+.chip code{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size:13px}
+.btn{
+  appearance:none; border:3px solid #1f2937; border-radius:18px; padding:10px 16px;
+  font-weight:800; cursor:pointer; box-shadow:4px 4px 0 #1f2937;
+  transition:transform .08s ease, box-shadow .2s;
+  background:linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%); color:#231815;
+  text-transform:uppercase; letter-spacing:.5px
+}
+.btn:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 #1f2937}
+.btn:active{transform:translate(0,0); box-shadow:3px 3px 0 #1f2937}
+.btn.secondary{background:#fff; color:var(--ink); border:3px solid #1f2937}
+.btn.ghost{background:#fff; border:3px dashed #1f2937; color:#1f2937}
+/* Social pills */
+.pill{display:flex; align-items:center; gap:6px; padding:10px 14px; border-radius:999px; border:3px solid #1f2937; box-shadow:4px 4px 0 #1f2937; background:#fff}
+.pill svg{flex:0 0 auto; filter:drop-shadow(1px 1px 0 rgba(0,0,0,0.2))}
+/* Mobile collapsible */
+@media (max-width: 960px){
+  .hamburger{display:inline-flex}
+  .nav-actions{
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    right: 20px;
+    width: auto;
+    flex-direction:column;
+    align-items:stretch;
+    gap:12px;
+    padding:12px;
+    background:#fff;
+    border:3px solid #1f2937;
+    border-radius:16px;
+    box-shadow:8px 8px 0 #1f2937;
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(-6px);
+    transition:max-height .35s ease, opacity .25s ease, transform .25s ease;
+    pointer-events: none;
+  }
+  .nav-actions.open{
+    max-height:600px;
+    opacity:1;
+    transform:translateY(0);
+    pointer-events: all;
+  }
+  .btn, .btn.secondary, .btn.ghost{ width:100%; justify-content:center }
+  .contract-chip { padding:8px 10px; gap:8px; justify-content:space-between }
+  .contract-chip code{ max-width:55vw; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:inline-block; font-size:12px }
+  .btn.copy .label{ display:none } .btn.copy svg{ width:18px; height:18px }
+}
+/* HERO */
+.hero{
+  padding:28px 0 8px;
+  position:relative;
+  background:rgba(255, 247, 236, 0.4);
+  backdrop-filter:blur(4px);
+}
+.hero-wrap{display:grid; grid-template-columns:1fr; gap:24px; align-items:center; justify-items:center}
+.hero h1{ 
+  font-family:Chewy; font-size:54px; margin:0 0 8px; text-align:center; 
+  letter-spacing:.5px; color:#fff;
+  text-shadow:
+    2px 2px 0 #1f2937,
+    -2px -2px 0 #1f2937,
+    2px -2px 0 #1f2937,
+    -2px 2px 0 #1f2937,
+    3px 3px 0 #ffd48a,
+    6px 6px 0 rgba(0,0,0,.2);
+}
+.lead{
+  font-size:18px; 
+  margin:0 0 16px; 
+  text-align:center; 
+  color:#fff;
+  text-shadow:
+    1px 1px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    2px 2px 4px rgba(0,0,0,0.5);
+}
+.cta-row{display:flex; gap:10px; flex-wrap:wrap; justify-content:center}
+/* LONGDOG + HUD */
+.longdog-card{
+  background:var(--card); 
+  border-radius:28px; 
+  padding:16px; 
+  box-shadow:var(--shadow);
+  border:4px solid #1f2937; 
+  position:relative; 
+  overflow:hidden; 
+  max-width:460px;
+  outline:3px dashed #ffd48a;
+  outline-offset:-8px;
+}
+.longdog-tip{position:absolute; right:12px; top:12px; font-size:12px; background:#fff; padding:6px 10px; border-radius:999px; border:2px dashed #ffd48a; box-shadow:2px 2px 0 rgba(0,0,0,0.1)}
+.longdog-card img{width:100%; height:auto; display:block; transition:transform .15s ease-out; transform-origin:50% 0; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.1))}
+.neck-hud{ position:absolute; left:12px; bottom:12px; right:12px; display:flex; align-items:center; gap:10px; background:#fff; border:3px solid #1f2937; border-radius:14px; padding:6px 10px; box-shadow:4px 4px 0 #1f2937}
+.neck-meter{font-family:Chewy; font-size:18px}
+.neck-progress{flex:1; height:12px; background:#ffe5b4; border:3px solid #1f2937; border-radius:999px; overflow:hidden}
+.neck-bar{height:100%; width:0%; background:linear-gradient(90deg, #ff8a00, #ffb703)}
+.toast{ position:absolute; left:50%; top:-10px; transform:translate(-50%,-100%); background:#fff; border:3px solid #1f2937; padding:8px 12px; border-radius:12px; font-family:Chewy; box-shadow:4px 4px 0 #1f2937; display:none}
+.toast.show{display:block; animation:pop .35s ease}
+@keyframes pop{0%{transform:translate(-50%,-100%) scale(.8); opacity:0}100%{transform:translate(-50%,-100%) scale(1); opacity:1}}
+/* GALLERY */
+.section{padding:40px 0}
+.section h2{font-family:Chewy; font-size:40px; margin:0 0 18px; text-align:center; letter-spacing:.5px; text-shadow:2px 2px 0 #ffd48a;}
+.grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px}
+.card{background:#fff; border-radius:16px; overflow:hidden; border:3px solid #1f2937; box-shadow:var(--shadow)}
+.card img{width:100%; height:100%; display:block; object-fit:cover}
+@media (max-width: 640px){ .grid{grid-template-columns:repeat(2, 1fr)} .hero h1{font-size:36px} }
+@media (max-width: 420px){ .grid{grid-template-columns:1fr} .container{padding:0 10px} .hero h1{font-size:28px} .longdog-card{padding:10px} }
+/* LIGHTBOX CARD with INFO */
+.lb{position:fixed; inset:0; background:rgba(0,0,0,.75); display:none; align-items:center; justify-content:center; z-index:1000; padding:20px}
+.lb.open{display:flex; animation:fade .2s ease}
+@keyframes fade{from{opacity:0} to{opacity:1}}
+.lb-card{background:#fff; border:3px solid #1f2937; border-radius:20px; box-shadow:8px 8px 0 #1f2937; max-width:820px; width:96%; overflow:hidden; display:grid; grid-template-columns:1fr 320px}
+.lb-media{background:#fff; padding:8px; display:grid; place-items:center}
+.lb-media img{max-height:72vh; width:auto; height:auto}
+.lb-info{background:var(--card); border-left:2px dashed #ffd48a; padding:14px; display:flex; gap:12px; flex-direction:column; justify-content:space-between}
+.lb-title{font-family:Chewy; font-size:26px}
+.lb-desc{font-size:14px; line-height:1.45}
+.lb-actions{display:flex; gap:10px; flex-wrap:wrap}
+.lb-actions .btn{display:inline-flex; align-items:center; gap:8px}
+.lb-close{position:absolute; right:14px; top:14px; background:#fff; border:3px solid #1f2937; border-radius:999px; width:40px; height:40px; font-size:20px; font-weight:800; cursor:pointer; box-shadow:4px 4px 0 #1f2937}
+@media (max-width: 760px){
+  .lb-card{grid-template-columns:1fr}
+  .lb-media img{max-height:50vh}
+}
+</style>
+</head>
+<body>
+  <!-- Video Background -->
+  <div class="video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="bg.mp4" type="video/mp4">
+    </video>
+  </div>
+  <nav class="nav" aria-label="Main">
+    <div class="container nav-inner">
+      <div class="brand">
+        <img class="logo" src="logo.png" alt="Longdog Logo" aria-hidden="true">
+        <div class="title">Longdog Coin</div>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Buka menu" aria-controls="navMenu" aria-expanded="false">
+        <span class="line"></span>
+      </button>
+      <div class="nav-actions" id="navMenu">
+        <div class="chip contract-chip" title="Alamat kontrak token">
+          <span class="chip-label">CA:</span>
+          <code id="contractCode">LONGDOGxxxxxxxxxxxxxxxxxxxx</code>
+          <button class="btn secondary copy" id="copyContract" aria-label="Copy contract">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="7" y="7" width="10" height="10" rx="2" stroke="#1f2937" stroke-width="2"/>
+              <rect x="4" y="4" width="10" height="10" rx="2" stroke="#1f2937" stroke-width="2" opacity="0.7"/>
+            </svg>
+            <span class="label">Copy</span>
+          </button>
+        </div>
+        <a class="pill" id="tgLink" href="https://t.me/longdogcoin" target="_blank" rel="noopener" title="Telegram Community">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#229ED9"/><path d="M17.5 7.5L6.5 11.5L10 13L13.5 10.5L10 13L10.5 16L12.5 14.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="font-family:Chewy;">Telegram</span>
+        </a>
+        <a class="pill" id="xLink" href="https://twitter.com/longdogcoin" target="_blank" rel="noopener" title="X (Twitter) Community">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#000"/><path d="M7 7L17 17M17 7L7 17" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+          <span style="font-family:Chewy;">X</span>
+        </a>
+        <a class="btn ghost" href="#" id="buyDex" target="_blank" rel="noopener">Buy on DEX</a>
+        <button class="btn" id="connectBtn">Connect Phantom</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <h1>Unleash The <span style="color:var(--accent)">LONG</span> in Longdog</h1>
+        <p class="lead">Scroll or drag to stretch Longdog's neck. This site is fun, responsive, and ready for the meme community.</p>
+        <div class="cta-row">
+          <a class="btn" href="#gallery">View Meme Gallery</a>
+          <a class="btn secondary" href="#" aria-disabled="true" title="More links coming soon">Soon™</a>
+        </div>
+      </div>
+      <div class="longdog-card">
+        <div class="longdog-tip">Scroll / drag ✦ stretch the neck</div>
+        <div class="toast" id="neckToast">Woof! Too loooong!</div>
+        <img id="longdogImg" src="longdog_resized.png" alt="Longdog Mascot" />
+        <div class="neck-hud" aria-live="polite">
+          <div class="neck-meter" id="neckMeter">Neck: 1.00 m 🐶</div>
+          <div class="neck-progress" aria-hidden="true">
+            <div class="neck-bar" id="neckBar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<style>
+.video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.video-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1,
+.hero .lead {
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+</style>
+
+    <style>
+      .hero {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .video-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      .video-bg video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6); /* Darker overlay */
+      }
+
+      /* Update text colors for better contrast */
+      .hero h1,
+      .hero .lead {
+        color: #fff;
+        position: relative;
+        z-index: 2;
+      }
+    </style>
+  </header>
+  <section class="section" id="gallery">
+    <div class="container">
+      <h2>Galeri Meme Longdog</h2>
+      <div class="grid" id="memeGrid">
+        <!-- Memes with info for 1,2,3 -->
+        <figure class="card"><img src="memes/meme (1).jpg" alt="Meme 1" data-title="Meme 1" data-desc="Longdog showing off super long neck, ready to moon!"/></figure>
+        <figure class="card"><img src="memes/meme (2).jpg" alt="Meme 2" data-title="Meme 2" data-desc="When price goes up 2%, neck goes up 200%. Woof!"/></figure>
+        <figure class="card"><img src="memes/meme (6).jpg" alt="Meme 3" data-title="Meme 3" data-desc="The longest community across all chains — Longdog fam."/></figure>
+        <!-- Others fallback to alt as title -->
+        <figure class="card"><img src="memes/meme (3).jpg" alt="Meme 4"></figure>
+        <figure class="card"><img src="memes/meme (4).jpg" alt="Meme 5"></figure> 
+        <figure class="card"><img src="memes/meme (5).jpg" alt="Meme 6"></figure>
+        <figure class="card"><img src="memes/meme (7).jpg" alt="Meme 7"></figure>
+        <figure class="card"><img src="memes/meme (8).jpg" alt="Meme 8"></figure>
+        <figure class="card"><img src="memes/meme (9).jpg" alt="Meme 9"></figure>
+        <figure class="card"><img src="memes/meme (10).jpg" alt="Meme 10"></figure>
+        <figure class="card"><img src="memes/meme (11).jpg" alt="Meme 11"></figure>
+        <figure class="card"><img src="memes/meme (12).jpg" alt="Meme 12"></figure>
+        <figure class="card"><img src="memes/meme (13).jpg" alt="Meme 13"></figure>
+        <figure class="card"><img src="memes/meme (14).jpg" alt="Meme 14"></figure>
+        <figure class="card"><img src="memes/meme (15).jpg" alt="Meme 15"></figure>
+        <figure class="card"><img src="memes/meme (16).jpg" alt="Meme 16"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX with info -->
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Meme detail">
+    <button class="lb-close" id="lbClose" aria-label="Tutup">×</button>
+    <div class="lb-card" style="width: auto; max-width: 90vw; grid-template-columns: auto 320px;">
+      <div class="lb-media" style="max-height: 90vh; padding: 16px;">
+        <img id="lbImg" src="" alt="" style="max-width: 100%; max-height: 80vh; width: auto; height: auto; object-fit: contain;">
+      </div>
+      <aside class="lb-info">
+        <div>
+          <div class="lb-title" id="lbTitle">Meme</div>
+          <p class="lb-desc" id="lbDesc">Meme description.</p>
+        </div>
+        <div class="lb-actions">
+          <a id="lbShare" class="btn" href="#" target="_blank" rel="noopener" aria-label="Bagikan ke X">Share to X</a>
+          <a id="lbOpen" class="btn secondary" href="#" target="_blank" rel="noopener" aria-label="Buka gambar">Open Image</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Longdog. All the long vibes.</div>
+  </footer>
+<script>
+const CONTRACT_ADDRESS = 'LONGDOGxxxxxxxxxxxxxxxxxxxx';
+const BUY_DEX_LINK = '#';
+
+const $ = (sel, el=document) => el.querySelector(sel);
+const $$ = (sel, el=document) => Array.from(el.querySelectorAll(sel));
+
+// Navbar copy/buy
+$('#contractCode').textContent = CONTRACT_ADDRESS;
+$('#buyDex').href = BUY_DEX_LINK;
+
+// Copy handlers
+$('#copyContract').addEventListener('click', async () => {
+  try{ await navigator.clipboard.writeText(CONTRACT_ADDRESS); flash('Copied!'); }catch(e){}
+});
+$('#contractCode').addEventListener('click', async () => {
+  try{ await navigator.clipboard.writeText(CONTRACT_ADDRESS); flash('Copied!'); }catch(e){}
+});
+
+// Hamburger
+const burger = $('#hamburger'); const navMenu = $('#navMenu');
+function setMenu(open){
+  navMenu.classList.toggle('open', open);
+  burger.classList.toggle('active', open);
+  burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+burger.addEventListener('click', (e)=>{ e.stopPropagation(); setMenu(!navMenu.classList.contains('open')); });
+document.addEventListener('click', (e)=>{
+  if(navMenu.classList.contains('open') && !navMenu.contains(e.target) && !burger.contains(e.target)){ setMenu(false); }
+});
+window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') setMenu(false); });
+$('#navMenu').addEventListener('click', (e)=>{ const t=e.target.closest('a,button'); if(t && window.innerWidth<=960){ setMenu(false);} });
+
+// Phantom connect
+const connectBtn = $('#connectBtn');
+async function connectPhantom(){
+  const provider = window.solana;
+  if(!provider || !provider.isPhantom){
+    connectBtn.textContent = 'Install Phantom';
+    connectBtn.onclick = () => window.open('https://phantom.app/', '_blank');
+    flash('Phantom tidak terdeteksi'); return;
+  }
+  try{ const resp=await provider.connect({onlyIfTrusted:false}); const key=resp.publicKey.toString();
+    connectBtn.textContent = key.slice(0,4)+'…'+key.slice(-4); connectBtn.classList.add('secondary'); flash('Wallet connected');
+  }catch(e){ console.warn(e); flash('User canceled'); }
+}
+connectBtn.addEventListener('click', connectPhantom);
+
+// Mini-game: stretch
+const dogImg   = document.getElementById('longdogImg');
+const neckMeter= document.getElementById('neckMeter');
+const neckBar  = document.getElementById('neckBar');
+const neckToast= document.getElementById('neckToast');
+const SCALE_MIN=1.0, SCALE_MAX=1.8, BASE_NECK_M=1.0;
+let scroll01=0, drag01=0, toastShown=false;
+const ease=x=>Math.pow(x,0.6); const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+function computeStretch(){
+  const stretch01 = clamp(Math.max(scroll01,drag01),0,1);
+  const s = SCALE_MIN + (SCALE_MAX - SCALE_MIN) * ease(stretch01);
+  dogImg.style.transform = `scaleY(${s.toFixed(3)})`;
+  const length = BASE_NECK_M * s;
+  neckMeter.textContent = `Neck: ${length.toFixed(2)} m 🐶`;
+  neckBar.style.width = `${(stretch01*100).toFixed(1)}%`;
+  if(stretch01>=0.95 && !toastShown){ showToast(randomTooLong()); toastShown=true; }
+  if(stretch01<0.8){ toastShown=false; }
+}
+function updateScroll(){
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  scroll01 = maxScroll>0 ? window.scrollY/maxScroll : 0; computeStretch();
+}
+window.addEventListener('scroll', updateScroll, {passive:true});
+window.addEventListener('resize', updateScroll); updateScroll();
+let dragStartY=0, dragStart01=0, dragging=false;
+function onPointerDown(e){ dragging=true; dragStartY=(e.touches?e.touches[0].clientY:e.clientY)||0; dragStart01=drag01; dogImg.setPointerCapture?.(e.pointerId); }
+function onPointerMove(e){ if(!dragging) return; const y=(e.touches?e.touches[0].clientY:e.clientY)||0; const dy=(dragStartY-y)/300; drag01=clamp(dragStart01+dy,0,1); computeStretch(); }
+function onPointerUp(){ dragging=false; }
+dogImg.addEventListener('pointerdown', onPointerDown);
+dogImg.addEventListener('pointermove', onPointerMove);
+dogImg.addEventListener('pointerup', onPointerUp);
+dogImg.addEventListener('pointercancel', onPointerUp);
+dogImg.addEventListener('touchstart', onPointerDown, {passive:true});
+dogImg.addEventListener('touchmove',  onPointerMove, {passive:true});
+dogImg.addEventListener('touchend',   onPointerUp);
+function randomTooLong(){ return ['Woof! Too loooong! 🐶','Neck boss level! 😎','Careful, giraffe mode! 🦒','MAX STRETCH achieved! ✨'][Math.floor(Math.random()*4)]; }
+function showToast(text){ neckToast.textContent=text; neckToast.classList.add('show'); setTimeout(()=>neckToast.classList.remove('show'),1500); }
+
+// Lightbox with meme info + share
+const lb=$('#lb'), lbImg=$('#lbImg'), lbTitle=$('#lbTitle'), lbDesc=$('#lbDesc'), lbShare=$('#lbShare'), lbOpen=$('#lbOpen'), lbClose=$('#lbClose');
+const galleryImgs = $$('#memeGrid img');
+
+function openLB(img){
+  const src = img.src;
+  const title = img.dataset.title || img.alt || 'Meme';
+  const desc = img.dataset.desc || 'Longdog vibes.';
+  lbImg.src = src; lbImg.alt = title;
+  lbTitle.textContent = title;
+  lbDesc.textContent = desc;
+  lbOpen.href = src;
+  const text = encodeURIComponent(`🐶 #Longdog – ${title}: ${desc}`.slice(0,220));
+  const url  = encodeURIComponent(src);
+  lbShare.href = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=Longdog`;
+  lb.classList.add('open');
+}
+function closeLB(){ lb.classList.remove('open'); }
+galleryImgs.forEach(img=> img.addEventListener('click', ()=>openLB(img)));
+lbClose.addEventListener('click', closeLB);
+lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLB(); });
+window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLB(); });
+
+// Utils
+function flash(text){
+  const b = document.createElement('div');
+  b.textContent = text;
+  Object.assign(b.style, {position:'fixed', left:'50%', top:'14px', transform:'translateX(-50%)',
+    background:'#111', color:'#fff', padding:'8px 12px', borderRadius:'999px', zIndex:9999, opacity:.94});
+  document.body.appendChild(b); setTimeout(()=>b.remove(), 1000);
+}
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
